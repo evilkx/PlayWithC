@@ -1,2 +1,2 @@
-# PlayWithC-
-Show some test codes of c++
+# PlayWithC
+Show some interesting test codes of c/c++
