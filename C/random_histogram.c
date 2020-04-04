@@ -13,7 +13,7 @@ void gen_random(int upper_bound)
 	for(i=0;i<N;i++)
 		a[i] = rand() % upper_bound;
 }
-
+/*
 int howmany(int value)
 {
 	int count = 0, i;
@@ -33,7 +33,7 @@ int find_max(int p[])
 	}
 	return p[0];
 }
-
+*/
 int main(void)
 {
 	int i, j, max, histogram[R]={0};
