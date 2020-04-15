@@ -1,7 +1,3 @@
-/*
-结合的两张图片type和size必须一致
-*/
-
 #include <opencv2/opencv.hpp>
 #include <iostream>
 
@@ -21,17 +17,24 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 
+	// 使用Filter2D函数
+	Mat result;
+	Mat kern = (Mat_<char>(3, 3) << 0, -1, 0, -1, 5, -1, 0, -1, 0);
+	filter2D(src1, result, src1.depth(), kern);
+
 	double alpha = 0.5;
 	if (src1.rows == src2.rows && src1.cols == src2.cols && src1.type() == src2.type()) {
 		addWeighted(src1, alpha, src2, (1.0 - alpha), 0.0, dst);
 		// multiply(src1, src2, dst, 1.0);
 
-		namedWindow("linuxlogo", WINDOW_AUTOSIZE);
-		imshow("linuxlogo", src1);
-		namedWindow("win7logo", WINDOW_AUTOSIZE);
-		imshow("win7logo", src2);
+		namedWindow("white", WINDOW_AUTOSIZE);
+		imshow("white", result);
+		namedWindow("white logo", WINDOW_AUTOSIZE);
+		imshow("white logo", src2);
 		namedWindow("blend demo", WINDOW_AUTOSIZE);
 		imshow("blend demo", dst);
+
+		imwrite("D:/blend.png", dst);
 	}
 	else {
 		printf("could not blend images , the size of images is not same...\n");
